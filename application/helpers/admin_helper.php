@@ -1,6 +1,10 @@
 <?php 
 function admin_url($admin_url = ""){
-	return base_url("admin/action/$admin_url");
+	return base_url("admin/administrator/$admin_url");
+}
+function pre($list){
+	echo "<pre>";
+	print_r($list);
 }
 function fkey($url,$title){
 	$fkey = array(
@@ -10,7 +14,7 @@ function fkey($url,$title){
 	);
 	return $fkey;
 }
-function action_product(){
+function sidebar_product(){
 	$product = array(
 		'fkey' => fkey("product", "Sản phẩm"),
         'product' => 'Danh sách sản phẩm',
@@ -22,7 +26,7 @@ function action_product(){
     );
     return $product;
 }
-function action_tran(){
+function sidebar_tran(){
 	$tran = array(
 		'fkey' => fkey("tran", "Đơn hàng"),
 	    'customer' => 'Khách hàng',
@@ -31,7 +35,7 @@ function action_tran(){
 	);
     return $tran;
 };
-function action_news(){
+function sidebar_news(){
 	$news = array(
 		'fkey' => fkey("news", "Tin tức"),
 	    'news' => 'Quản lý tin tức',
@@ -40,7 +44,7 @@ function action_news(){
 	);
     return $news;
 }
-function action_affiliate(){
+function sidebar_affiliate(){
 	$affiliate = array(
 		'fkey' => fkey("affiliate", "Cộng tác viên"),
 	    'affiliate' => 'Cộng tác viên',
@@ -48,7 +52,7 @@ function action_affiliate(){
 	);
     return $affiliate;
 }
-function action_contact(){
+function sidebar_contact(){
 	$contact = array(
 		'fkey' => fkey("contact", "Khách hàng liên hệ"),
 	    'contact' => 'Danh sách liên hệ',
@@ -56,7 +60,7 @@ function action_contact(){
 	);
     return $contact;
 }
-function action_ads(){
+function sidebar_ads(){
 	$ads = array(
 		'fkey' => fkey("ads", "Quảng cáo"),
 	    'banner_size' => 'Kích thước',
@@ -66,7 +70,7 @@ function action_ads(){
     return $ads;
 }
 
-function action_theme(){
+function sidebar_theme(){
 	$theme = array(
 		'fkey' => fkey("theme", "Giao diện"),
 	    'menu' => 'Menu',
@@ -75,15 +79,16 @@ function action_theme(){
 	);
     return $theme;
 }
-function action_admin(){
+function sidebar_user(){
 	$admin = array(
-		'fkey' => fkey("admin", "Tài khoản"),
+		'fkey' => fkey("user", "Tài khoản"),
 	    'admin_group' => 'Nhóm quản trị',
-		'admin' => 'Ban quản trị '
+		'listadmin' => 'Ban quản trị',
+		'listuser' => 'Thành viên'
 	);
     return $admin;
 }
-function action_setting(){
+function sidebar_setting(){
 	$setting = array(
 		'fkey' => fkey("setting", "Cấu hình"),
 	    'setting' => 'Cấu hình chung',
@@ -126,4 +131,45 @@ function display_action($actions = array(), $manage = ""){
 	$data = $data . $sub_data;
     $data = $data . '</ul>';
     return $data;
+}
+
+function get_data_sidebar(){
+	$data['product'] = sidebar_product();
+    $data['tran'] = sidebar_tran();
+    $data['news'] = sidebar_news();
+    $data['contact'] = sidebar_contact();
+    $data['affiliate'] = sidebar_affiliate();
+    $data['ads'] = sidebar_ads();
+    $data['theme'] = sidebar_theme();
+    $data['admin'] = sidebar_user();
+    $data['setting'] = sidebar_setting();
+    return $data;
+}
+function get_title($manage = ""){
+	$title = '';
+	$data = get_data_sidebar();
+	foreach ($data as $key => $data_head) {
+		foreach ($data_head as $key1 => $value_title) {
+			if ($key1==$manage) {
+				$title = $value_title;
+				return $title;
+			}
+		}
+    }
+}
+
+function breadcrumb($active = ""){
+	$data = get_data_sidebar();
+	foreach ($data as $key => $data_breadcrumb) {
+		$data_fkey = array_shift($data_breadcrumb);
+		if ($data_fkey['url']==$manage) {
+			$breadcrumb[] = $data_fkey['title'];
+		}
+		foreach ($data_breadcrumb as $key1 => $value1) {
+			if ($key1==$manage) {
+				$breadcrumb[] = $value1;
+				return $breadcrumb;
+			}
+		}
+    }
 }

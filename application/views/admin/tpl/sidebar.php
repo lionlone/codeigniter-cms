@@ -15,7 +15,7 @@
         <!-- Label -->
         <li class="sidebar-label pt15">Quản lý sản phẩm</li>                                                 
         <li class="">
-            <?= display_action($product,$manage); ?>
+            <?= display_action($product,$sidebar_active); ?>
         </li>
 
         </li>
@@ -23,7 +23,7 @@
         <!-- Label -->
 
         <li class="">
-            <?= display_action($tran,$manage); ?>
+            <?= display_action($tran,$sidebar_active); ?>
         </li>
 
         </li>
@@ -41,7 +41,7 @@
         <!-- Label -->
         <li class="sidebar-label pt15">Quản lý nội dung</li> 
         <li class="">
-            <?= display_action($news,$manage); ?>
+            <?= display_action($news,$sidebar_active); ?>
         </li>
 
         </li>
@@ -58,7 +58,7 @@
         <!-- Label -->
 
         <li class="">
-            <?= display_action($contact,$manage); ?>
+            <?= display_action($contact,$sidebar_active); ?>
         </li>
 
         </li>
@@ -66,7 +66,7 @@
         <!-- Label -->
         <li class="sidebar-label pt15">Cấu hình hệ thống</li>             
         <li class="">
-            <?= display_action($affiliate,$manage); ?>
+            <?= display_action($affiliate,$sidebar_active); ?>
         </li>
 
         </li>
@@ -74,7 +74,7 @@
         <!-- Label -->
 
         <li class="">
-            <?= display_action($ads,$manage); ?>
+            <?= display_action($ads,$sidebar_active); ?>
         </li>
 
         </li>
@@ -82,13 +82,13 @@
         <!-- Label -->
 
         <li class="">
-            <?= display_action($theme,$manage); ?>
+            <?= display_action($theme,$sidebar_active); ?>
         </li>
 
         <!-- Label -->
 
         <li class="">
-            <?= display_action($admin,$manage); ?>
+            <?= display_action($admin,$sidebar_active); ?>
         </li>
 
         </li>
@@ -106,7 +106,7 @@
         <!-- Label -->
 
         <li class="">
-            <?= display_action($setting,$manage); ?>
+            <?= display_action($setting,$sidebar_active); ?>
         </li>
         <!-- Resources stats -->
         <li class="sidebar-label pt25 pb10 text-info">Tài nguyên</li>
