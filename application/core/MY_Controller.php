@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller{
 				break;
 			
 			default:
-				# code...
+				
 				break;
 		}
 	}
